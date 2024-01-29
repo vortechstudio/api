@@ -16,7 +16,7 @@ Documentation:
 
 Social:
   - changed-files:
-      - all-glob-to-all-file: [
+      - any-glob-to-any-file: [
         'app/Models/Social/*',
         'app/Http/Controllers/Social/*',
         'app/Http/Requests/Social/*',
@@ -26,7 +26,7 @@ Social:
 
 Railway:
   - changed-files:
-      - all-glob-to-all-file: [
+      - any-glob-to-any-file: [
         'app/Models/Railway/*',
         'app/Http/Controllers/Railway/*',
         'app/Http/Requests/Railway/*',
@@ -36,7 +36,7 @@ Railway:
 
 Support:
   - changed-files:
-      - all-glob-to-all-file: [
+      - any-glob-to-any-file: [
         'app/Models/Support/*',
         'app/Http/Controllers/Support/*',
         'app/Http/Requests/Support/*',
@@ -46,7 +46,7 @@ Support:
 
 Wiki:
   - changed-files:
-      - all-glob-to-all-file: [
+      - any-glob-to-any-file: [
         'app/Models/Wiki/*',
         'app/Http/Controllers/Wiki/*',
         'app/Http/Requests/Wiki/*',
@@ -56,7 +56,7 @@ Wiki:
 
 Config:
   - changed-files:
-      - all-glob-to-all-file: [
+      - any-glob-to-any-file: [
         'app/Models/Config/*',
         'app/Http/Controllers/Config/*',
         'app/Http/Requests/Config/*',
@@ -66,7 +66,7 @@ Config:
 
 User:
   - changed-files:
-      - all-glob-to-all-file: [
+      - any-glob-to-any-file: [
         'app/Models/User/*',
         'app/Http/Controllers/User/*',
         'app/Http/Requests/User/*',
