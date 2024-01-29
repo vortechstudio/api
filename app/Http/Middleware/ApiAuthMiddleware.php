@@ -10,11 +10,12 @@ class ApiAuthMiddleware
     public function handle(Request $request, Closure $next)
     {
         //dd($request->header("Authorization"), "Bearer ".env('API_AUTH_TOKEN'));
-        if($request->header("Authorization") !== "Bearer ".config("api.auth_token")) {
+        if ($request->header('Authorization') !== 'Bearer '.config('api.auth_token')) {
             return response()->json([
-                "message" => "Unauthorized"
+                'message' => 'Unauthorized',
             ], 401);
         }
+
         return $next($request);
     }
 }

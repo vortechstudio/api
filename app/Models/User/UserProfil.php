@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class UserProfil extends Model
 {
     protected $guarded = [];
+
     public $timestamps = false;
 
     protected $casts = [
