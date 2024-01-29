@@ -8,9 +8,8 @@ use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Process;
-use function Laravel\Prompts\confirm;
+
 use function Laravel\Prompts\spin;
-use function Laravel\Prompts\text;
 
 class InstallCommand extends Command
 {
@@ -31,6 +30,7 @@ class InstallCommand extends Command
             $this->line('please run');
             $this->line('php artisan app:install --help');
             $this->line('to see the command usage.');
+
             return 0;
         }
         $this->alert('Application is installing...');
@@ -39,19 +39,21 @@ class InstallCommand extends Command
         $this->updateEnvVariablesFromOptions();
         $this->info('Env file created successfully.');
         $this->info('Runnning migrations and seeders...');
-        if (!static::runMigrationsWithSeeders()) {
+        if (! static::runMigrationsWithSeeders()) {
             $this->error('Your database credentials are wrong!');
+
             return 0;
         }
 
         $this->alert('Application is installed successfully.');
         $this->installSubsidiary();
+
         return 1;
     }
 
     public function missingRequiredOptions(): bool
     {
-        return !$this->option('db-database');
+        return ! $this->option('db-database');
     }
 
     private function updateEnv($data)
@@ -64,25 +66,26 @@ class InstallCommand extends Command
                 $entry = explode('=', $envValue, 2);
                 // Check if exists or not in env file
                 if ($entry[0] == $dataKey) {
-                    $env[$envKey] = $dataKey . '=' . $dataValue;
+                    $env[$envKey] = $dataKey.'='.$dataValue;
                     $alreadyExistInEnv = true;
                 } else {
                     $env[$envKey] = $envValue;
                 }
             }
             // add the variable if not exists in env
-            if (!$alreadyExistInEnv) {
-                $env[] = $dataKey . '=' . $dataValue;
+            if (! $alreadyExistInEnv) {
+                $env[] = $dataKey.'='.$dataValue;
             }
         }
         $env = implode("\n", $env);
         file_put_contents(base_path('.env'), $env);
+
         return true;
     }
 
     public static function copyEnvExampleToEnv()
     {
-        if (!is_file(base_path('.env')) && is_file(base_path('.env.example'))) {
+        if (! is_file(base_path('.env')) && is_file(base_path('.env.example'))) {
             File::copy(base_path('.env.example'), base_path('.env'));
         }
     }
@@ -100,6 +103,7 @@ class InstallCommand extends Command
         } catch (\Exception $e) {
             return false;
         }
+
         return true;
     }
 
@@ -127,58 +131,57 @@ class InstallCommand extends Command
 
     private function installSubsidiary()
     {
-        if(!file_exists(base_path('.github'))) {
+        if (! file_exists(base_path('.github'))) {
             mkdir(base_path('.github'));
             mkdir(base_path('.github/workflows'));
         }
 
-        if($this->confirm('Voulez-vous utiliser "Close Issue" ?')) {
+        if ($this->confirm('Voulez-vous utiliser "Close Issue" ?')) {
             $this->createFileCloseIssue();
         }
 
-        if($this->confirm("Voulez-vous utiliser 'Label' ?")) {
+        if ($this->confirm("Voulez-vous utiliser 'Label' ?")) {
             $this->createFileLabeled();
         }
 
         $this->createDependabotAutoMerge();
         $this->createFixPhpStyle();
 
-        if($this->confirm("Voulez-vous utiliser 'PhpStan' ?")) {
+        if ($this->confirm("Voulez-vous utiliser 'PhpStan' ?")) {
             spin(function () {
                 Process::run('composer require --dev phpstan/phpstan');
                 Process::run('composer require --dev nunomaduro/larastan');
                 Process::run('php artisan vendor:publish --provider="NunoMaduro\Larastan\LarastanServiceProvider" --tag=config');
                 $this->createPhpStan();
-            }, "Installation de PhpStan...");
+            }, 'Installation de PhpStan...');
         }
 
-
-        if($this->confirm("Voulez-vous utiliser 'PR Update' ?")) {
+        if ($this->confirm("Voulez-vous utiliser 'PR Update' ?")) {
             $this->createPrUpdate();
         }
 
-        if($this->confirm("Voulez-vous utiliser 'Release' ?")) {
+        if ($this->confirm("Voulez-vous utiliser 'Release' ?")) {
             $this->createRelease();
         }
 
-        if($this->confirm("Voulez-vous utiliser 'Test' ?")) {
+        if ($this->confirm("Voulez-vous utiliser 'Test' ?")) {
             $this->createTest();
         }
 
-        if($this->confirm("Voulez-vous utiliser 'Update Changelog' ?")) {
+        if ($this->confirm("Voulez-vous utiliser 'Update Changelog' ?")) {
             $this->createUpChangelog();
         }
 
-        $this->info("Installation des dépendances supplémentaires...");
-        $this->info("Installation de Log Viewer...");
+        $this->info('Installation des dépendances supplémentaires...');
+        $this->info('Installation de Log Viewer...');
 
         Process::run('composer require arcanedev/log-viewer');
         Process::run('php artisan log-viewer:publish');
 
-        $this->info("Installation de Github API");
+        $this->info('Installation de Github API');
         Process::run('composer require knplabs/github-api');
 
-        $this->info("Installation de Livewire");
+        $this->info('Installation de Livewire');
         Process::run('composer require livewire/livewire');
         Process::run('composer require jantinnerezo/livewire-alert');
 
@@ -186,7 +189,7 @@ class InstallCommand extends Command
         Process::run('git commit -m "Init System"');
         Process::run('git push origin master');
 
-        $this->alert("Installation des packages subsidiaire Terminer");
+        $this->alert('Installation des packages subsidiaire Terminer');
     }
 
     private function createFileCloseIssue()
