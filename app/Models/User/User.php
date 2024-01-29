@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'admin',
     ];
 
     /**
@@ -42,4 +43,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function logs()
+    {
+        return $this->hasMany(UserLog::class);
+    }
+
+    public function profil()
+    {
+        return $this->hasOne(UserProfil::class);
+    }
 }
