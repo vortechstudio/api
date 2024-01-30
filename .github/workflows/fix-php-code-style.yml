@@ -1,4 +1,4 @@
-name: Résoudre les problèmes de style de code PHP
+name: CodeStyle
 
 on:
   push:

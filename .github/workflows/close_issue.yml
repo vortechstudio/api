@@ -1,4 +1,4 @@
-name: Fermer et commenter les problèmes référencés
+name: CloseIssues
 on:
   pull_request:
     types: [closed]
@@ -13,7 +13,7 @@ jobs:
 
       - name: Close Referenced Issues
         env:
-          GH_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         run: |
           PR_NUMBER=${{ github.event.pull_request.number }}
           COMMIT_MESSAGES=$(git log --format=%B -n 1 ${{ github.sha }})

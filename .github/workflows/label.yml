@@ -1,4 +1,4 @@
-name: Attribution de label au PR
+name: Labeler
 on:
     pull_request:
         types: [opened]
@@ -11,7 +11,7 @@ jobs:
       pull-requests: write
     steps:
       - name: Set up Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2
         with:
           node-version: '20'
       - uses: actions/labeler@v5
