@@ -19,7 +19,7 @@ use Multicaret\Acquaintances\Traits\Friendable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable, Friendable, CanFollow, CanBeFollowed, CanLike, CanBeLiked;
+    use CanBeFollowed, CanBeLiked, CanFollow, CanLike, Friendable, HasApiTokens, HasFactory, Notifiable;
 
     /**
      * The attributes that are mass assignable.

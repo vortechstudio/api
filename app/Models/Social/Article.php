@@ -10,7 +10,9 @@ use Pharaonic\Laravel\Categorizable\Traits\Categorizable;
 class Article extends Model
 {
     use Categorizable;
+
     protected $guarded = [];
+
     protected $casts = [
         'published_at' => 'timestamp',
         'publish_social_at' => 'timestamp',

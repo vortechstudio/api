@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class PostComment extends Model
 {
     use SoftDeletes;
+
     protected $guarded = [];
 
     public function post()
