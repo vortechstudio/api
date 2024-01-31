@@ -24,4 +24,9 @@ class Event extends Model
     {
         return $this->belongsToMany(User::class, 'user_event', 'event_id', 'user_id');
     }
+
+    public function poll()
+    {
+        return $this->hasOne(Poll::class);
+    }
 }
