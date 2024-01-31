@@ -2,17 +2,23 @@
 
 namespace App\Models\Social;
 
+use App\Enums\Social\EventStatusEnum;
+use App\Enums\Social\EventTypeEnum;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
+use Pharaonic\Laravel\Taggable\Traits\Taggable;
 
 class Event extends Model
 {
+    use Taggable;
     protected $guarded = [];
     public $timestamps = false;
 
     protected $casts = [
         'start_at' => 'timestamp',
         'end_at' => 'timestamp',
+        'status' => EventStatusEnum::class,
+        'type_event' => EventTypeEnum::class
     ];
 
     public function cercles()

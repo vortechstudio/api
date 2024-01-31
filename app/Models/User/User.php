@@ -4,6 +4,8 @@ namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Social\Event;
+use App\Models\Social\Post\Post;
+use App\Models\Social\Post\PostComment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -63,5 +65,15 @@ class User extends Authenticatable
     public function events()
     {
         return $this->belongsToMany(Event::class, 'user_event', 'user_id', 'event_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class);
     }
 }
