@@ -3,14 +3,23 @@
 namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Social\Article;
+use App\Models\Social\Event;
+use App\Models\Social\Post\Post;
+use App\Models\Social\Post\PostComment;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Multicaret\Acquaintances\Traits\CanBeFollowed;
+use Multicaret\Acquaintances\Traits\CanBeLiked;
+use Multicaret\Acquaintances\Traits\CanFollow;
+use Multicaret\Acquaintances\Traits\CanLike;
+use Multicaret\Acquaintances\Traits\Friendable;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, Friendable, CanFollow, CanBeFollowed, CanLike, CanBeLiked;
 
     /**
      * The attributes that are mass assignable.
@@ -52,5 +61,25 @@ class User extends Authenticatable
     public function profil()
     {
         return $this->hasOne(UserProfil::class);
+    }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'user_event', 'user_id', 'event_id');
+    }
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(PostComment::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 }
