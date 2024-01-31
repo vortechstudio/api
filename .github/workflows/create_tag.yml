@@ -21,7 +21,11 @@ jobs:
       - name: Extract PR Titles
         id: pr-titles
         run: |
-          PR_TITLES=$(git log $(echo ${{ steps.lasttag.outputs.tag }})..HEAD --pretty=format:"%s")
+          if [[ "${{ steps.lasttag.outputs.tag }}" == "0.0.0" ]]; then
+            PR_TITLES=$(git log --pretty=format:"%s")
+          else
+            PR_TITLES=$(git log $(echo ${{ steps.lasttag.outputs.tag }})..HEAD --pretty=format:"%s")
+          fi
           echo "::set-output name=titles::$PR_TITLES"
 
       - name: Determine Version Increment
