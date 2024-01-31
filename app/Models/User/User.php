@@ -3,6 +3,7 @@
 namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\Social\Article;
 use App\Models\Social\Event;
 use App\Models\Social\Post\Post;
 use App\Models\Social\Post\PostComment;
@@ -75,5 +76,10 @@ class User extends Authenticatable
     public function comments()
     {
         return $this->hasMany(PostComment::class);
+    }
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
     }
 }
