@@ -1,7 +1,7 @@
 name: FlowFailures
 on:
   workflow_run:
-    workflows: []  # Remplacez par le nom de votre workflow principal
+    workflows: ["CloseIssues", "CreateTag", "CodeStyle", "Labeler", "UpdatePR", "Release", "Changelog"]  # Remplacez par le nom de votre workflow principal
     types:
       - completed
 jobs:
