@@ -1,36 +1,36 @@
-name: Publication
-on:
-  push:
-    branches:
-      - production
+name: Release
 
-permissions:
-  contents: read
+on:
+  workflow_run:
+    workflows: ["Auto Versioning on Production Merge"]
+    types:
+      - completed
 
 jobs:
-  release:
+  create-release:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
     runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
-    permissions:
-      contents: write # to be able to publish a GitHub release
-      issues: write # to be able to comment on released issues
-      pull-requests: write # to be able to comment on released pull requests
-      id-token: write # to enable use of OIDC for npm provenance
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Generate Release Notes
+        id: generate-notes
+        uses: RedCrafter07/release-notes-action@main
         with:
-          fetch-depth: 0  # Important pour récupérer toutes les tags et commits
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: production
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: "lts/*"
-
-      - name: Install semantic-release
-        run: npm install semantic-release @semantic-release/changelog @semantic-release/git
-
-      - name: Print Semantic-release Output
+      - name: Get Last Tag
+        id: lasttag
         run: |
-          npx semantic-release
+          LAST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "v1.0.0")
+          echo "::set-output name=tag::$LAST_TAG"  
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          tag_name: release-${{ steps.lasttag.outputs.tag }}
+          name: Release ${{ steps.lasttag.outputs.tag }}
+          body: ${{ steps.generate-notes.outputs.release-notes }}

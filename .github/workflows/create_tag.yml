@@ -1,0 +1,63 @@
+name: CreateTag
+
+on:
+  push:
+    branches:
+      - production
+
+jobs:
+  auto-versioning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+
+      - name: Get Last Tag
+        id: lasttag
+        run: |
+          LAST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "v1.0.0")
+          echo "::set-output name=tag::$LAST_TAG"
+
+      - name: Extract PR Titles
+        id: pr-titles
+        run: |
+          PR_TITLES=$(git log $(echo ${{ steps.lasttag.outputs.tag }})..HEAD --pretty=format:"%s")
+          echo "::set-output name=titles::$PR_TITLES"
+
+      - name: Determine Version Increment
+        id: version
+        run: |
+          MAJOR=0
+          MINOR=0
+          PATCH=0
+          IFS=$'\n'
+          for title in ${{ steps.pr-titles.outputs.titles }}
+          do
+            if [[ $title == *"feat"* ]]; then
+              MINOR=$((MINOR+1))
+            elif [[ $title == *"fix"* ]]; then
+              PATCH=$((PATCH+1))
+            elif [[ $title == *"BREAKING CHANGE"* ]]; then
+              MAJOR=$((MAJOR+1))
+            fi
+          done
+          CURRENT_TAG=${{ steps.lasttag.outputs.tag }}
+          CURRENT_MAJOR=$(echo $CURRENT_TAG | cut -d '.' -f 1)
+          CURRENT_MINOR=$(echo $CURRENT_TAG | cut -d '.' -f 2)
+          CURRENT_PATCH=$(echo $CURRENT_TAG | cut -d '.' -f 3)
+          if [[ $MAJOR -ne 0 ]]; then
+            NEW_TAG="${CURRENT_MAJOR+1}.0.0"
+          elif [[ $MINOR -ne 0 ]]; then
+            NEW_TAG="${CURRENT_MAJOR}.${CURRENT_MINOR+1}.0"
+          elif [[ $PATCH -ne 0 ]]; then
+            NEW_TAG="${CURRENT_MAJOR}.${CURRENT_MINOR}.${CURRENT_PATCH+1}"
+          else
+            NEW_TAG=$CURRENT_TAG
+          fi
+          echo "::set-output name=new-tag::$NEW_TAG"
+
+      - name: Create Tag and Release
+        if: ${{ steps.version.outputs.new-tag }} != ${{ steps.lasttag.outputs.tag }}
+        run: |
+          git tag ${{ steps.version.outputs.new-tag }}
+          git push origin ${{ steps.version.outputs.new-tag }}
