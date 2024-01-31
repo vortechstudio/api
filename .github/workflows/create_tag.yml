@@ -71,9 +71,3 @@ jobs:
             NEW_TAG=$CURRENT_TAG
           fi
           echo "::set-output name=new-tag::$NEW_TAG"
-
-      - name: Create Tag and Release
-        if: ${{ steps.version.outputs.new-tag }} != ${{ steps.lasttag.outputs.tag }}
-        run: |
-          git tag ${{ steps.version.outputs.new-tag }}
-          git push origin ${{ steps.version.outputs.new-tag }}
