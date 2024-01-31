@@ -9,6 +9,16 @@ jobs:
   auto-versioning:
     runs-on: ubuntu-latest
     steps:
+      - name: Set up Git identity
+        run: |
+          git config --global user.name 'Vortech Studio Releaser'
+          git config --global user.email 'contact@vortechstudio.fr'
+
+      - name: Set up GitHub Token
+        run: |
+          git config --global credential.helper store
+          echo "https://${{ secrets.ACCESS_TOKEN }}@github.com" > ~/.git-credentials
+
       - name: Checkout Code
         uses: actions/checkout@v2
 
