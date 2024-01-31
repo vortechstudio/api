@@ -11,6 +11,7 @@ use Pharaonic\Laravel\Taggable\Traits\Taggable;
 class Post extends Model
 {
     protected $guarded = [];
+
     use SoftDeletes, Taggable;
 
     protected $casts = [

@@ -2,9 +2,11 @@
 
 namespace App\Enums\Social\Post;
 
-enum PostTypeEnum:string
+enum PostTypeEnum: string
 {
     const TEXT = 'text';
+
     const IMAGE = 'image';
+
     const VIDEO = 'video';
 }

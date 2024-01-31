@@ -11,14 +11,16 @@ use Pharaonic\Laravel\Taggable\Traits\Taggable;
 class Event extends Model
 {
     use Taggable;
+
     protected $guarded = [];
+
     public $timestamps = false;
 
     protected $casts = [
         'start_at' => 'timestamp',
         'end_at' => 'timestamp',
         'status' => EventStatusEnum::class,
-        'type_event' => EventTypeEnum::class
+        'type_event' => EventTypeEnum::class,
     ];
 
     public function cercles()

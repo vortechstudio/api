@@ -4,7 +4,8 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration {
+return new class extends Migration
+{
     public function up(): void
     {
         Schema::create('articles', function (Blueprint $table) {
@@ -21,14 +22,14 @@ return new class extends Migration {
             $table->timestamps();
 
             $table->foreignId('author')
-               ->constrained('user_id', 'user_id')
-               ->cascadeOnUpdate()
-               ->cascadeOnDelete();
+                ->constrained('user_id', 'user_id')
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
 
             $table->foreignId('cercle_id')
-               ->constrained()
-               ->cascadeOnUpdate()
-               ->cascadeOnDelete();
+                ->constrained()
+                ->cascadeOnUpdate()
+                ->cascadeOnDelete();
         });
     }
 
