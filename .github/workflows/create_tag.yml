@@ -71,3 +71,6 @@ jobs:
             NEW_TAG=$CURRENT_TAG
           fi
           echo "::set-output name=new-tag::$NEW_TAG"
+
+      - name: Display Next Version Tag
+        run: echo "Next version tag is ${{ steps.version.outputs.new-tag }}"
