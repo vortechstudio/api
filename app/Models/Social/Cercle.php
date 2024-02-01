@@ -3,6 +3,7 @@
 namespace App\Models\Social;
 
 use App\Models\Social\Post\Post;
+use App\Models\Wiki\WikiCategory;
 use Illuminate\Database\Eloquent\Model;
 
 class Cercle extends Model
@@ -24,5 +25,10 @@ class Cercle extends Model
     public function articles()
     {
         return $this->hasMany(Article::class);
+    }
+
+    public function wiki_categories()
+    {
+        return $this->hasMany(WikiCategory::class);
     }
 }
