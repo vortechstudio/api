@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class ServiceVersion extends Model
 {
     protected $guarded = [];
+
     protected $casts = [
         'published_at' => 'timestamp',
         'publish_social_at' => 'timestamp',
