@@ -21,18 +21,19 @@ jobs:
           prerelease: 'alpha'
           create-release: branch_name
 
+      - name: Get Last Tag
+        id: lasttag
+        run: |
+          LAST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "v1.0.0")
+          echo "::set-output name=tag::$LAST_TAG"
+
       - name: Generate Release Notes
         id: generate-notes
         uses: RedCrafter07/release-notes-action@main
         with:
           token: ${{ secrets.ACCESS_TOKEN }}
           branch: production
-
-      - name: Get Last Tag
-        id: lasttag
-        run: |
-          LAST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "v1.0.0")
-          echo "::set-output name=tag::$LAST_TAG"
+          tag-name: ${{ steps.lasttag.outputs.tag }}
 
       - name: Create GitHub Release
         uses: softprops/action-gh-release@v1
