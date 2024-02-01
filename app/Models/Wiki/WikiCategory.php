@@ -8,13 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class WikiCategory extends Model
 {
     protected $guarded = [];
+
     public $timestamps = false;
 
     public function cercle()
     {
         return $this->belongsTo(Cercle::class);
     }
-
 
     public function subcategories()
     {
