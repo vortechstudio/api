@@ -9,68 +9,35 @@ jobs:
   auto-versioning:
     runs-on: ubuntu-latest
     steps:
-      - name: Set up Git identity
-        run: |
-          git config --global user.name 'Vortech Studio Releaser'
-          git config --global user.email 'contact@vortechstudio.fr'
-
-      - name: Set up GitHub Token
-        run: |
-          git config --global credential.helper store
-          echo "https://${{ secrets.ACCESS_TOKEN }}@github.com" > ~/.git-credentials
-
       - name: Checkout Code
         uses: actions/checkout@v2
+
+      - name: Determine next version
+        uses: SOLIDSoftworks/semver-tags@v1
+        with:
+          GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
+          tag-prefix: 'v'
+          default-version: '0.0.1'
+          prerelease: 'alpha'
+          create-release: branch_name
+
+      - name: Generate Release Notes
+        id: generate-notes
+        uses: RedCrafter07/release-notes-action@main
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          branch: production
 
       - name: Get Last Tag
         id: lasttag
         run: |
-          LAST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "0.0.0")
+          LAST_TAG=$(git describe --tags `git rev-list --tags --max-count=1` 2>/dev/null || echo "v1.0.0")
           echo "::set-output name=tag::$LAST_TAG"
 
-      - name: Extract PR Titles
-        id: pr-titles
-        run: |
-          if [[ "${{ steps.lasttag.outputs.tag }}" == "0.0.0" ]]; then
-            PR_TITLES=$(git log --pretty=format:"%s")
-          else
-            PR_TITLES=$(git log $(echo ${{ steps.lasttag.outputs.tag }})..HEAD --pretty=format:"%s")
-          fi
-          echo "::set-output name=titles::$PR_TITLES"
-
-      - name: Determine Version Increment
-        id: version
-        run: |
-          MAJOR=0
-          MINOR=0
-          PATCH=0
-          IFS=$'\n'
-          TITLES="${{ steps.pr-titles.outputs.titles }}"
-          readarray -t TITLE_ARRAY <<< "$TITLES"
-          for title in "${TITLE_ARRAY[@]}"
-          do
-            if [[ $title == *"feat"* ]]; then
-              MINOR=$((MINOR+1))
-            elif [[ $title == *"fix"* ]]; then
-              PATCH=$((PATCH+1))
-            elif [[ $title == *"BREAKING CHANGE"* ]]; then
-              MAJOR=$((MAJOR+1))
-            fi
-          done
-          CURRENT_TAG=${{ steps.lasttag.outputs.tag }}
-          CURRENT_MAJOR=$(echo $CURRENT_TAG | cut -d '.' -f 1)
-          CURRENT_MINOR=$(echo $CURRENT_TAG | cut -d '.' -f 2)
-          CURRENT_PATCH=$(echo $CURRENT_TAG | cut -d '.' -f 3)
-          if [[ $MAJOR -ne 0 ]]; then
-            NEW_TAG="$((CURRENT_MAJOR+1)).0.0"
-          elif [[ $MINOR -ne 0 ]]; then
-            NEW_TAG="${CURRENT_MAJOR}.$((CURRENT_MINOR+1)).0"
-          elif [[ $PATCH -ne 0 ]]; then
-            NEW_TAG="${CURRENT_MAJOR}.${CURRENT_MINOR}.$((CURRENT_PATCH+1))"
-          else
-            NEW_TAG=$CURRENT_TAG
-          fi
-          echo "::set-output name=new-tag::$NEW_TAG"
-
-      - name: Display Next Version Tag
-        run: echo "Next version tag is ${{ steps.version.outputs.new-tag }}"
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          token: ${{ secrets.ACCESS_TOKEN }}
+          tag_name: release-${{ steps.lasttag.outputs.tag }}
+          name: Release ${{ steps.lasttag.outputs.tag }}
+          body: ${{ steps.generate-notes.outputs.release-notes }}
