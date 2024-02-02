@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Railway;
+namespace App\Models\Railway\Engine;
 
 use Illuminate\Database\Eloquent\Model;
 

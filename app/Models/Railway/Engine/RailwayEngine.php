@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Railway;
+namespace App\Models\Railway\Engine;
 
 use App\Enums\Railway\Engine\RailwayEngineEnergyEnum;
 use App\Enums\Railway\Engine\RailwayEngineStatusEnum;
