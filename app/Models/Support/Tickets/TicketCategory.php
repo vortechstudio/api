@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class TicketCategory extends Model
 {
     protected $guarded = [];
+
     public $timestamps = false;
 
     public function service()

@@ -2,8 +2,9 @@
 
 namespace App\Enums\Config;
 
-enum ServiceTypeEnum:string
+enum ServiceTypeEnum: string
 {
-    const JEUX = "jeux";
-    const PLATEFORME = "plateforme";
+    const JEUX = 'jeux';
+
+    const PLATEFORME = 'plateforme';
 }

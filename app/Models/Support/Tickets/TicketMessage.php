@@ -8,8 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class TicketMessage extends Model
 {
     protected $guarded = [];
+
     protected $casts = [
-        "read_at" => "datetime"
+        'read_at' => 'datetime',
     ];
 
     public function user()
