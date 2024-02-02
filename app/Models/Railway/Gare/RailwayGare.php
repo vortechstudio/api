@@ -3,6 +3,7 @@
 namespace App\Models\Railway\Gare;
 
 use App\Enums\Railway\Gare\GareTypeEnum;
+use App\Models\Railway\Ligne\RailwayLigneStation;
 use Illuminate\Database\Eloquent\Model;
 
 class RailwayGare extends Model
@@ -22,5 +23,10 @@ class RailwayGare extends Model
     public function hub()
     {
         return $this->hasOne(RailwayHub::class);
+    }
+
+    public function stations()
+    {
+        return $this->hasMany(RailwayLigneStation::class);
     }
 }
