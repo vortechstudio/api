@@ -12,11 +12,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Ticket extends Model
 {
     use SoftDeletes;
+
     protected $guarded = [];
 
     protected $casts = [
-        "status" => TicketStatusEnum::class,
-        "priority" => TicketPriorityEnum::class
+        'status' => TicketStatusEnum::class,
+        'priority' => TicketPriorityEnum::class,
     ];
 
     public function user()
