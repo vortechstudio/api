@@ -4,6 +4,8 @@ namespace App\Models\Config;
 
 use App\Enums\Config\ServiceStatusEnum;
 use App\Enums\Config\ServiceTypeEnum;
+use App\Models\Support\Tickets\Ticket;
+use App\Models\Support\Tickets\TicketCategory;
 use App\Models\User\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -28,5 +30,15 @@ class Service extends Model
     public function versions(): HasMany
     {
         return $this->hasMany(ServiceVersion::class);
+    }
+
+    public function ticket_categories()
+    {
+        return $this->hasMany(TicketCategory::class);
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
     }
 }

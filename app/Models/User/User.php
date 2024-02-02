@@ -8,6 +8,8 @@ use App\Models\Social\Article;
 use App\Models\Social\Event;
 use App\Models\Social\Post\Post;
 use App\Models\Social\Post\PostComment;
+use App\Models\Support\Tickets\Ticket;
+use App\Models\Support\Tickets\TicketMessage;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -87,5 +89,15 @@ class User extends Authenticatable
     public function services()
     {
         return $this->hasMany(Service::class);
+    }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
+    public function messages()
+    {
+        return $this->hasMany(TicketMessage::class);
     }
 }
