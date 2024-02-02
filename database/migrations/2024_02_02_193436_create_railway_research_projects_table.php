@@ -13,6 +13,7 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->bigInteger('price_base');
             $table->bigInteger('duration_base')->default(0);
+            $table->string('name_function')->nullable();
 
             $table->foreignId('research_category_id')
                ->constrained("railway_research_categories")
