@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6a9905afe6080dd06d7d6bfd386711cc",
+    "content-hash": "4384b4c04b7a34f9438947dee3651ab5",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -3124,6 +3124,64 @@
                 "source": "https://github.com/Pharaonic/laravel-pages/tree/1.2.2"
             },
             "time": "2022-04-02T10:14:33+00:00"
+        },
+        {
+            "name": "pharaonic/laravel-settings",
+            "version": "1.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Pharaonic/laravel-settings.git",
+                "reference": "9187e89677581c2bd4da901e69e0e4bd86207724"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Pharaonic/laravel-settings/zipball/9187e89677581c2bd4da901e69e0e4bd86207724",
+                "reference": "9187e89677581c2bd4da901e69e0e4bd86207724",
+                "shasum": ""
+            },
+            "require": {
+                "laravel/framework": ">=6.0",
+                "php": ">=7.2"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Pharaonic\\Laravel\\Settings\\SettingsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Pharaonic\\Laravel\\Settings\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Moamen Eltouny (Raggi)",
+                    "email": "raggi@raggitech.com"
+                }
+            ],
+            "description": "Store and retrieve settings generally or for model objects in Laravel.",
+            "keywords": [
+                "Settings",
+                "info",
+                "laravel",
+                "laravel settings",
+                "php"
+            ],
+            "support": {
+                "issues": "https://github.com/Pharaonic/laravel-settings/issues",
+                "source": "https://github.com/Pharaonic/laravel-settings/tree/1.2.0"
+            },
+            "time": "2022-12-14T16:38:59+00:00"
         },
         {
             "name": "pharaonic/laravel-sluggable",
