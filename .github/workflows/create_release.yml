@@ -17,10 +17,12 @@ jobs:
           default-version: '0.0.1'
           add-minor-tag: true
           add-major-tag: true
-          create-release: branch_name
+          create-release: true
 
   release_notes:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     timeout-minutes: 5
 
     steps:
