@@ -18,8 +18,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
           tag-prefix: 'v'
           default-version: '0.0.1'
-          create-release: branch_name
+          create-release: false
 
+  create-release:
+    runs-on: ubuntu-latest
+    steps:
       - name: Get Last Tag
         id: lasttag
         run: |
