@@ -4,9 +4,11 @@ namespace App\Models\Railway\Gare;
 
 use App\Enums\Railway\Gare\HubStatusEnum;
 use Illuminate\Database\Eloquent\Model;
+use Pharaonic\Laravel\Settings\Traits\Settingable;
 
 class RailwayHub extends Model
 {
+    use Settingable;
     protected $guarded = [];
     public $timestamps = false;
 

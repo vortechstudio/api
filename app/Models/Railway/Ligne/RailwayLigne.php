@@ -8,10 +8,11 @@ use App\Models\Railway\Gare\RailwayGare;
 use App\Models\Railway\Gare\RailwayHub;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Pharaonic\Laravel\Settings\Traits\Settingable;
 
 class RailwayLigne extends Model
 {
-    use SoftDeletes;
+    use SoftDeletes, Settingable;
 
     protected $guarded = [];
     public $timestamps = false;
