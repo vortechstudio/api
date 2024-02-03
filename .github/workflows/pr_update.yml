@@ -19,6 +19,7 @@ jobs:
           PR_NUMBER=$(jq --raw-output .pull_request.number "$GITHUB_EVENT_PATH")
           COMMITS=$(gh pr view $PR_NUMBER --json commits --jq '.commits[].messageBody')
           TITLE=$(gh pr view $PR_NUMBER --json commits --jq '.commits[].messageHeadline')
+          TITLE=${TITLE:0:256}
           DESCRIPTION=$(gh pr view $PR_NUMBER --json commits --jq '.commits[].messageBody')
 
           if [ -n "$TITLE" ]; then

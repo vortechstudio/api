@@ -22,7 +22,7 @@ return new class extends Migration
             $table->timestamps();
 
             $table->foreignId('author')
-                ->constrained('user_id', 'user_id')
+                ->constrained('users')
                 ->cascadeOnUpdate()
                 ->cascadeOnDelete();
 
