@@ -13,10 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware(['apiauth'])->prefix(config('api.version'))->group(function () {
-    Route::get('/online', function () {
-        return response()->json([
-            'message' => 'API is online',
-        ], 200);
-    });
+Route::get('/online', function () {
+    return response()->json([
+        'message' => 'API is online',
+    ], 200);
+});
+
+Route::prefix('auth')->group(function () {
+
 });
