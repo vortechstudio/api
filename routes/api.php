@@ -22,4 +22,9 @@ Route::get('/online', function () {
 Route::prefix('auth')->group(function () {
     Route::post('/login', \App\Http\Controllers\Auth\LoginController::class);
     Route::delete('/logout', \App\Http\Controllers\Auth\LogoutController::class)->middleware(['auth:sanctum']);
+    Route::post('/register', \App\Http\Controllers\Auth\RegisterController::class);
+});
+
+Route::middleware(["auth:sanctum"])->group(function () {
+    include_once "api/account.php";
 });
