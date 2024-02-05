@@ -2,11 +2,11 @@
 
 namespace App\Enums\Railway\Engine;
 
-enum RailwayEngineEnergyEnum
+enum RailwayEngineEnergyEnum:string
 {
-    const VAPEUR = "vapeur";
-    const DIESEL = "diesel";
-    const ELECTRIQUE = "electrique";
-    const HYBRIDE = "hybride";
-    const NONE = "none";
+    case VAPEUR = "vapeur";
+    case DIESEL = "diesel";
+    case ELECTRIQUE = "electrique";
+    case HYBRIDE = "hybride";
+    case NONE = "none";
 }

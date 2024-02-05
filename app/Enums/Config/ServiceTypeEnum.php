@@ -2,8 +2,9 @@
 
 namespace App\Enums\Config;
 
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
 enum ServiceTypeEnum:string
 {
-    const JEUX = "jeux";
-    const PLATEFORME = "plateforme";
+    case JEUX = "jeux";
+    case PLATEFORME = "plateforme";
 }

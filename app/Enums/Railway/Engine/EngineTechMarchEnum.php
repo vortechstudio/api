@@ -2,11 +2,9 @@
 
 namespace App\Enums\Railway\Engine;
 
-enum EngineTechMarchEnum
+enum EngineTechMarchEnum:string
 {
-    const NONE = "none";
-    const PASSAGER = "passager";
-    const MARCHANDISE = "marchandise";
-
-    const default = self::NONE;
+    case NONE = "none";
+    case PASSAGER = "passager";
+    case MARCHANDISE = "marchandise";
 }

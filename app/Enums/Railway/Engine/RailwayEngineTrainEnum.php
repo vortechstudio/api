@@ -2,10 +2,10 @@
 
 namespace App\Enums\Railway\Engine;
 
-enum RailwayEngineTrainEnum
+enum RailwayEngineTrainEnum:string
 {
-    const MOTRICE = "motrice";
-    const VOITURE = "voiture";
-    const AUTO = "automotrice";
-    const BUS = "bus";
+    case MOTRICE = "motrice";
+    case VOITURE = "voiture";
+    case AUTO = "automotrice";
+    case BUS = "bus";
 }
