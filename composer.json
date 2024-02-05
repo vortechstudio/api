@@ -11,6 +11,7 @@
         "guzzlehttp/guzzle": "^7.2",
         "jantinnerezo/livewire-alert": "^3.0",
         "knplabs/github-api": "^3.13",
+        "larabug/larabug": "^3.0",
         "laravel/framework": "^10.10",
         "laravel/prompts": "^0.1.15",
         "laravel/sanctum": "^3.3",
