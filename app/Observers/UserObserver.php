@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\Mail\WelcomeMail;
 use App\Models\User\User;
+use App\Notifications\Users\WelcomeNotification;
 
 class UserObserver
 {
@@ -32,7 +33,7 @@ class UserObserver
             "action" => "Profil de l'utilisateur créer"
         ]);
 
-        $user->notify(new WelcomeMail($user));
+        $user->notify(new WelcomeNotification($user));
     }
 
     public function updated(User $user): void
