@@ -28,6 +28,6 @@ class ResponseApiController extends Controller
         return response()->json([
             'status' => "error",
             'message' => $message,
-        ]);
+        ], 500);
     }
 }

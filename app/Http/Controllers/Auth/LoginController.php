@@ -11,15 +11,22 @@ class LoginController extends ResponseApiController
     public function __invoke()
     {
         if (\Auth::attempt(request()->only('email', 'password'))) {
-            $user = User::where('email', request('email'))->first();
-            $token = $user->createToken('auth_token')->plainTextToken;
+            try {
+                $user = User::where('email', request('email'))->first();
+                $token = $user->createToken('auth_token')->plainTextToken;
 
-            $this->success([
-                "access_token" => $token,
-                "provider" => request()->has('provider') ? request('provider') : null
-            ]);
+                $user->updated_at = now();
+                $user->save();
+
+                return $this->success([
+                    "access_token" => $token,
+                    "provider" => request()->has('provider') ? request('provider') : null
+                ]);
+            }catch (\Exception $exception) {
+                return $this->error($exception, 'Error while logging in');
+            }
         } else {
-            $this->error(null, 'Invalid credentials');
+            return $this->error(null, 'Invalid credentials');
         }
     }
 }
