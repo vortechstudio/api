@@ -23,7 +23,8 @@
         "pharaonic/laravel-settings": "^1.2",
         "pharaonic/laravel-sluggable": "^1.0",
         "pharaonic/laravel-taggable": "^1.0",
-        "pharaonic/laravel-translatable": "^2.0"
+        "pharaonic/laravel-translatable": "^2.0",
+        "qoraiche/laravel-mail-editor": "^4.1@beta"
     },
     "require-dev": {
         "fakerphp/faker": "^1.9.1",
