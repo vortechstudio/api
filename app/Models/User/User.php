@@ -3,7 +3,6 @@
 namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Config\Service;
 use App\Models\Social\Article;
 use App\Models\Social\Event;
 use App\Models\Social\Post\Post;
@@ -89,7 +88,7 @@ class User extends Authenticatable
 
     public function services()
     {
-        return $this->hasMany(Service::class);
+        return $this->hasMany(UserService::class);
     }
 
     public function tickets()
