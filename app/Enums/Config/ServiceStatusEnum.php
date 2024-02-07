@@ -2,11 +2,9 @@
 
 namespace App\Enums\Config;
 
-enum ServiceStatusEnum
+enum ServiceStatusEnum:string
 {
-    const IDEA = 'idea';
-
-    const DEVELOP = 'develop';
-
-    const PRODUCTION = 'production';
+    case IDEA = "idea";
+    case DEVELOP = "develop";
+    case PRODUCTION = "production";
 }

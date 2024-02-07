@@ -2,12 +2,11 @@
 
 namespace App\Enums\Railway\Gare;
 
-enum GareTypeEnum
+enum GareTypeEnum:string
 {
-    const HALTE = "halte";
-    const SMALL = "small";
-    const MEDIUM = "medium";
-    const LARGE = "large";
-    const TERMINUS = "terminus";
-    const default = self::SMALL;
+    case HALTE = "halte";
+    case SMALL = "small";
+    case MEDIUM = "medium";
+    case LARGE = "large";
+    case TERMINUS = "terminus";
 }

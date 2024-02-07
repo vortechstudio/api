@@ -4,11 +4,11 @@ namespace App\Enums\Social;
 
 enum ArticleTypeEnum: string
 {
-    const NOTICE = 'notice';
+    case NOTICE = 'notice';
 
-    const EVENT = 'event';
+    case EVENT = 'event';
 
-    const NEWS = 'news';
+    case NEWS = 'news';
 
-    const SSO = 'auth';
+    case SSO = 'auth';
 }

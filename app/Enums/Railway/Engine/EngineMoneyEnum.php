@@ -2,11 +2,9 @@
 
 namespace App\Enums\Railway\Engine;
 
-enum EngineMoneyEnum
+enum EngineMoneyEnum:string
 {
-    const ARGENT = "argent";
-    const TPOINT = "tpoint";
-    const REEL = "reel";
-
-    const default = self::ARGENT;
+    case ARGENT = "argent";
+    case TPOINT = "tpoint";
+    case REEL = "reel";
 }

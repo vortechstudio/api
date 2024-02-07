@@ -3,7 +3,6 @@
 namespace App\Models\User;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\Config\Service;
 use App\Models\Social\Article;
 use App\Models\Social\Event;
 use App\Models\Social\Post\Post;
@@ -14,6 +13,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Laravel\Sanctum\NewAccessToken;
 use Multicaret\Acquaintances\Traits\CanBeFollowed;
 use Multicaret\Acquaintances\Traits\CanBeLiked;
 use Multicaret\Acquaintances\Traits\CanFollow;
@@ -35,6 +35,9 @@ class User extends Authenticatable
         'email',
         'password',
         'admin',
+        'otp',
+        'otp_token',
+        'otp_expires_at'
     ];
 
     /**
@@ -89,7 +92,7 @@ class User extends Authenticatable
 
     public function services()
     {
-        return $this->hasMany(Service::class);
+        return $this->hasMany(UserService::class);
     }
 
     public function tickets()
@@ -100,5 +103,19 @@ class User extends Authenticatable
     public function messages()
     {
         return $this->hasMany(TicketMessage::class);
+
+    }
+
+    public function createAccessToken($name, $abilities = ['*'])
+    {
+        $token = $this->tokens()->create([
+            "name" => $name,
+            "token" => hash('sha256', $plainTextToken = \Str::random(40)),
+            "abilities" => $abilities,
+            "last_used_at" => now(),
+            "expires_at" => now()->addHour()
+        ]);
+
+        return new NewAccessToken($token, $token->id.'|'.$plainTextToken);
     }
 }
