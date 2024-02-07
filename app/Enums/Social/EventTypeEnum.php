@@ -2,9 +2,9 @@
 
 namespace App\Enums\Social;
 
-enum EventTypeEnum
+enum EventTypeEnum:string
 {
-    const POLL = 'poll';
+    case POLL = 'poll';
 
-    const GRAPHIC = 'graphic';
+    case GRAPHIC = 'graphic';
 }

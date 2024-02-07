@@ -2,12 +2,12 @@
 
 namespace App\Enums\Railway\Engine;
 
-enum RailwayEngineTransportEnum
+enum RailwayEngineTransportEnum:string
 {
-    const TER = "ter";
-    const TGV = "tgv";
-    const INTERCITY = "intercity";
-    const TRAM = "tram";
-    const METRO = "metro";
-    const OTHER = "other";
+    case TER = "ter";
+    case TGV = "tgv";
+    case INTERCITY = "intercity";
+    case TRAM = "tram";
+    case METRO = "metro";
+    case OTHER = "other";
 }

@@ -4,7 +4,7 @@ namespace App\Enums\Support\Tickets;
 
 enum TicketStatusEnum:string
 {
-    const OPEN = "open";
-    const CLOSED = "closed";
-    const PENDING = "pending";
+    case OPEN = "open";
+    case CLOSED = "closed";
+    case PENDING = "pending";
 }

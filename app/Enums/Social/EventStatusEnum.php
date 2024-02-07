@@ -2,13 +2,13 @@
 
 namespace App\Enums\Social;
 
-enum EventStatusEnum
+enum EventStatusEnum:string
 {
-    const PROGRESS = 'progress';
+    case PROGRESS = 'progress';
 
-    const SUBMITTING = 'submitting';
+    case SUBMITTING = 'submitting';
 
-    const EVALUATION = 'evaluation';
+    case EVALUATION = 'evaluation';
 
-    const CLOSED = 'closed';
+    case CLOSED = 'closed';
 }

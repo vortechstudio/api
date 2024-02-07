@@ -2,11 +2,10 @@
 
 namespace App\Enums\Railway\Config;
 
-enum AdvantageCardClassEnum
+enum AdvantageCardClassEnum:string
 {
-    const THIRD = "third";
-    const SECOND = "second";
-    const FIRST = "first";
-    const PREMIUM = "premium";
-    const default = self::THIRD;
+    case THIRD = "third";
+    case SECOND = "second";
+    case FIRST = "first";
+    case PREMIUM = "premium";
 }
