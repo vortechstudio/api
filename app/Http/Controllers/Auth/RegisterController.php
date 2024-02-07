@@ -20,7 +20,7 @@ class RegisterController extends ResponseApiController
         $user = User::create([
             "name" => request("name"),
             "email" => request("email"),
-            "password" => bcrypt(request("password")),
+            "password" => \Hash::make(request("password")),
             "email_verified_at" => now()
         ]);
         return $this->success($user);

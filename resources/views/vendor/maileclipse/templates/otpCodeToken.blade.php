@@ -216,7 +216,7 @@
 <td style="padding-bottom: 15px; background-color: #ffffff;" valign="top">&nbsp;</td>
 </tr>
 <tr>
-<td style="padding-bottom: 20px; background-color: #ffffff;" valign="top"><strong>Bonjour { first_name },</strong><br />Une demande de connexion OTP &agrave; &eacute;t&eacute; initi&eacute; sur votre compte: { otp_code }.<br />Ce code est valide 10 minutes.</td>
+<td style="padding-bottom: 20px; background-color: #ffffff;" valign="top"><strong>Bonjour {{ $first_name }},</strong><br />Une demande de connexion OTP &agrave; &eacute;t&eacute; initi&eacute; sur votre compte: {{ $otp_code }}.<br />Ce code est valide 10 minutes.</td>
 </tr>
 <tr>
 <td>

@@ -11,7 +11,7 @@ class OtpController extends ResponseApiController
 {
     public function activate()
     {
-        if (!request()->user()->otp) {
+        if (request()->user()->otp) {
             return $this->error(null, "OTP Déjà activé");
         } else {
             try {
@@ -58,7 +58,7 @@ class OtpController extends ResponseApiController
     public function checkout()
     {
         if(request()->user()->otp && request()->user()->otp_token == request('token')) {
-            if(request()->user()->otp_expires_at <= now()) {
+            if(request()->user()->otp_expires_at >= now()) {
                 request()->user()->otp_token = null;
                 request()->user()->otp_expires_at = null;
                 request()->user()->save();

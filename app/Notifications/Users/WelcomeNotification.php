@@ -8,7 +8,7 @@ use Illuminate\Notifications\Notification;
 
 class WelcomeNotification extends Notification
 {
-    public function __construct()
+    public function __construct(public User $user)
     {
     }
 
