@@ -8,7 +8,8 @@ use Pharaonic\Laravel\Pages\HasPages;
 
 class Wiki extends Model
 {
-    use SoftDeletes, HasPages;
+    use HasPages, SoftDeletes;
+
     protected $guarded = [];
 
     protected $casts = [

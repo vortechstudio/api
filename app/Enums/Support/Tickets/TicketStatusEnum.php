@@ -2,7 +2,7 @@
 
 namespace App\Enums\Support\Tickets;
 
-enum TicketStatusEnum:string
+enum TicketStatusEnum: string
 {
     case OPEN = "open";
     case CLOSED = "closed";

@@ -14,12 +14,13 @@ use Pharaonic\Laravel\Pages\HasPages;
 
 class Service extends Model
 {
-    use SoftDeletes, HasPages;
+    use HasPages, SoftDeletes;
+
     protected $guarded = [];
 
     protected $casts = [
-        "type" => ServiceTypeEnum::class,
-        "status" => ServiceStatusEnum::class
+        'type' => ServiceTypeEnum::class,
+        'status' => ServiceStatusEnum::class,
     ];
 
     public function users()
