@@ -10,7 +10,8 @@ class ProfilController extends ResponseApiController
 {
     public function __invoke()
     {
-        $user = User::with('profil', 'services.service', 'tickets')->find(request()->user()->id);
+        $user = User::with('profil', 'services.service', 'tickets', 'events')
+            ->find(request()->user()->id);
         return $this->success([
             "user" => $user
         ]);

@@ -6,9 +6,11 @@ use App\Models\User\User;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class WelcomeNotification extends Notification
+class ActivateOtpNotification extends Notification
 {
-    public function __construct()
+    public function __construct(
+        public User $user
+    )
     {
     }
 
@@ -20,8 +22,10 @@ class WelcomeNotification extends Notification
     public function toMail($notifiable): MailMessage
     {
         return (new MailMessage)
-            ->subject("Bienvenue !")
-            ->view('maileclipse::templates.welcomeNewUser', ["user" => $this->user]);
+            ->subject("Activation de l'authentification OTP sur votre compte")
+            ->view("mails.user.activate_otp", [
+                "user" => $this->user
+            ]);
     }
 
     public function toArray($notifiable): array
