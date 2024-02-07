@@ -18,6 +18,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.4",
         "multicaret/laravel-acquaintances": "^3.5",
+        "pharaonic/laravel-agents-detector": "^1.0",
         "pharaonic/laravel-categorizable": "^1.1",
         "pharaonic/laravel-modulator": "^1.3",
         "pharaonic/laravel-pages": "^1.2",
@@ -41,7 +42,10 @@
             "App\\": "app/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/"
-        }
+        },
+        "files": [
+            "app/helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
