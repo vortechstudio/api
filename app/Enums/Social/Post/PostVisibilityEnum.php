@@ -4,7 +4,7 @@ namespace App\Enums\Social\Post;
 
 enum PostVisibilityEnum: string
 {
-    const PUBLIC = 'public';
+    case PUBLIC = 'public';
 
-    const FRIENDS = 'friends';
+    case FRIENDS = 'friends';
 }

@@ -4,9 +4,9 @@ namespace App\Enums\Social\Post;
 
 enum PostTypeEnum: string
 {
-    const TEXT = 'text';
+    case TEXT = 'text';
 
-    const IMAGE = 'image';
+    case IMAGE = 'image';
 
-    const VIDEO = 'video';
+    case VIDEO = 'video';
 }
