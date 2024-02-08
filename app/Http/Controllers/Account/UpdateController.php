@@ -10,6 +10,7 @@ class UpdateController extends ResponseApiController
 {
     public function __invoke()
     {
+        //dd(request()->all());
         request()->validate([
             "action" => "required"
         ]);
@@ -23,9 +24,9 @@ class UpdateController extends ResponseApiController
     private function reinitPassword()
     {
         request()->validate([
-            "current_password" => "required|current_password:password|min:8",
+            "current_password" => "required|min:8",
             "password" => "required|min:8|confirmed",
-            "password_confirm" => "required",
+            "password_confirmation" => "required",
         ]);
 
         try {
