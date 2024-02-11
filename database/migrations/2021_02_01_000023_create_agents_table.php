@@ -22,10 +22,10 @@ class CreateAgentsTable extends Migration
             $table->foreignId('device_id')->nullable();
             $table->foreignId('operation_system_id')->nullable();
             $table->foreignId('browser_id')->nullable();
-            
+
             $table->boolean('is_bot')->default(false);
             $table->foreignId('bot_id')->nullable();
-            
+
             // Relationships
             $table->foreign('device_id')->references('id')->on('devices')->onDelete('set null');
             $table->foreign('operation_system_id')->references('id')->on('operation_systems')->onDelete('set null');

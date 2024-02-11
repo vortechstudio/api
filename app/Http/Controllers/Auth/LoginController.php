@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
 use App\Http\Controllers\ResponseApiController;
 use App\Models\User\User;
 
@@ -14,7 +13,7 @@ class LoginController extends ResponseApiController
             try {
                 $user = User::where('email', request('email'))->first();
 
-                if (request()->has('remember')){
+                if (request()->has('remember')) {
                     $token = $user->createToken('auth_token');
                 } else {
                     $token = $user->createToken('auth_token', ['*'], now()->addHour());
@@ -24,10 +23,10 @@ class LoginController extends ResponseApiController
                 $user->save();
 
                 return $this->success([
-                    "access_token" => $token->plainTextToken,
-                    "provider" => request()->has('provider') ? request('provider') : null,
+                    'access_token' => $token->plainTextToken,
+                    'provider' => request()->has('provider') ? request('provider') : null,
                 ]);
-            }catch (\Exception $exception) {
+            } catch (\Exception $exception) {
                 return $this->error($exception, 'Erreur durant la connexion !');
             }
         } else {
