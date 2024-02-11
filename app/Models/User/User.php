@@ -106,6 +106,11 @@ class User extends Authenticatable
 
     }
 
+    public function socials()
+    {
+        return $this->hasMany(UserSocial::class);
+    }
+
     public function createAccessToken($name, $abilities = ['*'])
     {
         $token = $this->tokens()->create([
