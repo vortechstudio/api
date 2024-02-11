@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7e803395c7bdefa6c186d0dd4b256ede",
+    "content-hash": "cedce0c2ebe453d101672e6745cd8dbe",
     "packages": [
         {
             "name": "arcanedev/log-viewer",
@@ -3323,16 +3323,16 @@
         },
         {
             "name": "pharaonic/laravel-modulator",
-            "version": "1.3.4",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Pharaonic/laravel-modulator.git",
-                "reference": "f72ef249143f9bf74dd319d8969691043c8958f6"
+                "reference": "97e3461dc99a9239bf4de1ee84cb4f0b35dec5bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Pharaonic/laravel-modulator/zipball/f72ef249143f9bf74dd319d8969691043c8958f6",
-                "reference": "f72ef249143f9bf74dd319d8969691043c8958f6",
+                "url": "https://api.github.com/repos/Pharaonic/laravel-modulator/zipball/97e3461dc99a9239bf4de1ee84cb4f0b35dec5bf",
+                "reference": "97e3461dc99a9239bf4de1ee84cb4f0b35dec5bf",
                 "shasum": ""
             },
             "require": {
@@ -3375,9 +3375,9 @@
             ],
             "support": {
                 "issues": "https://github.com/Pharaonic/laravel-modulator/issues",
-                "source": "https://github.com/Pharaonic/laravel-modulator/tree/1.3.4"
+                "source": "https://github.com/Pharaonic/laravel-modulator/tree/1.4.0"
             },
-            "time": "2023-10-28T21:51:06+00:00"
+            "time": "2024-02-05T21:46:24+00:00"
         },
         {
             "name": "pharaonic/laravel-pages",
@@ -8790,16 +8790,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "10.5.10",
+            "version": "11.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "50b8e314b6d0dd06521dc31d1abffa73f25f850c"
+                "reference": "de24e7e7c67fbf437f7b6cd7bc919f2dc6fd89d4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/50b8e314b6d0dd06521dc31d1abffa73f25f850c",
-                "reference": "50b8e314b6d0dd06521dc31d1abffa73f25f850c",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/de24e7e7c67fbf437f7b6cd7bc919f2dc6fd89d4",
+                "reference": "de24e7e7c67fbf437f7b6cd7bc919f2dc6fd89d4",
                 "shasum": ""
             },
             "require": {
@@ -8870,7 +8870,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/10.5.10"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.0.3"
             },
             "funding": [
                 {
@@ -8886,7 +8886,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-02-04T09:07:51+00:00"
+            "time": "2024-02-10T06:31:16+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -10027,16 +10027,16 @@
         },
         {
             "name": "spatie/laravel-ignition",
-            "version": "2.4.1",
+            "version": "2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/laravel-ignition.git",
-                "reference": "005e1e7b1232f3b22d7e7be3f602693efc7dba67"
+                "reference": "351504f4570e32908839fc5a2dc53bf77d02f85e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/005e1e7b1232f3b22d7e7be3f602693efc7dba67",
-                "reference": "005e1e7b1232f3b22d7e7be3f602693efc7dba67",
+                "url": "https://api.github.com/repos/spatie/laravel-ignition/zipball/351504f4570e32908839fc5a2dc53bf77d02f85e",
+                "reference": "351504f4570e32908839fc5a2dc53bf77d02f85e",
                 "shasum": ""
             },
             "require": {
@@ -10115,7 +10115,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-01-12T13:14:58+00:00"
+            "time": "2024-02-09T16:08:40+00:00"
         },
         {
             "name": "symfony/yaml",
