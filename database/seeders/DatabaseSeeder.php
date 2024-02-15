@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Enums\Config\ServiceStatusEnum;
 use App\Enums\Config\ServiceTypeEnum;
 use App\Models\Config\Service;
+use App\Models\Social\Cercle;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -28,6 +29,17 @@ class DatabaseSeeder extends Seeder
             "description" => "Accès de base au plateforme Vortech Studio",
             "status" => ServiceStatusEnum::PRODUCTION,
             "url" => "//account.".config('api.domain')
+        ]);
+
+
+        Cercle::create([
+            "name" => "Vortech Studio"
+        ]);
+        Cercle::create([
+            "name" => "Vortech Lab"
+        ]);
+        Cercle::create([
+            "name" => "Railway Manager"
         ]);
 
         if(config('app.env') == 'local' || config('app.env') == 'testing') {

@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Social\Article;
 use App\Models\User\User;
 use Illuminate\Database\Seeder;
 
@@ -16,5 +17,6 @@ class TestSeeder extends Seeder
         ]);
 
         User::factory(10)->create();
+        Article::factory(20)->create();
     }
 }
