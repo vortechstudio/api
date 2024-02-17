@@ -38,7 +38,7 @@ return [
     'environments' => [
         'production',
         'local',
-        'staging'
+        'staging',
     ],
 
     /*
@@ -109,7 +109,7 @@ return [
         '*cvv*',
         '*iban*',
         '*name*',
-        '*email*'
+        '*email*',
     ],
 
     /*
@@ -120,7 +120,7 @@ return [
     |
     */
 
-    'release' => trim(exec('git --git-dir ' . base_path('.git') . ' log --pretty="%h" -n1 HEAD')),
+    'release' => trim(exec('git --git-dir '.base_path('.git').' log --pretty="%h" -n1 HEAD')),
 
     /*
     |--------------------------------------------------------------------------

@@ -38,7 +38,7 @@ class User extends Authenticatable
         'admin',
         'otp',
         'otp_token',
-        'otp_expires_at'
+        'otp_expires_at',
     ];
 
     /**
@@ -115,11 +115,11 @@ class User extends Authenticatable
     public function createAccessToken($name, $abilities = ['*'])
     {
         $token = $this->tokens()->create([
-            "name" => $name,
-            "token" => hash('sha256', $plainTextToken = \Str::random(40)),
-            "abilities" => $abilities,
-            "last_used_at" => now(),
-            "expires_at" => now()->addHour()
+            'name' => $name,
+            'token' => hash('sha256', $plainTextToken = \Str::random(40)),
+            'abilities' => $abilities,
+            'last_used_at' => now(),
+            'expires_at' => now()->addHour(),
         ]);
 
         return new NewAccessToken($token, $token->id.'|'.$plainTextToken);
