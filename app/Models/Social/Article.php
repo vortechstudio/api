@@ -4,12 +4,13 @@ namespace App\Models\Social;
 
 use App\Enums\Social\ArticleTypeEnum;
 use App\Models\User\User;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Pharaonic\Laravel\Categorizable\Traits\Categorizable;
 
 class Article extends Model
 {
-    use Categorizable;
+    use Categorizable, HasFactory;
 
     protected $guarded = [];
 
@@ -17,6 +18,7 @@ class Article extends Model
         'published_at' => 'timestamp',
         'publish_social_at' => 'timestamp',
         'type' => ArticleTypeEnum::class,
+        "status" => "string"
     ];
 
     public function author()

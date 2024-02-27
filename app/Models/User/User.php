@@ -20,10 +20,11 @@ use Multicaret\Acquaintances\Traits\CanFollow;
 use Multicaret\Acquaintances\Traits\CanLike;
 use Multicaret\Acquaintances\Traits\Friendable;
 use Pharaonic\Laravel\Settings\Traits\Settingable;
+use Rappasoft\LaravelAuthenticationLog\Traits\AuthenticationLoggable;
 
 class User extends Authenticatable
 {
-    use CanBeFollowed, CanBeLiked, CanFollow, CanLike, Friendable, HasApiTokens, HasFactory, Notifiable, Settingable;
+    use CanBeFollowed, CanBeLiked, CanFollow, CanLike, Friendable, HasApiTokens, HasFactory, Notifiable, Settingable, AuthenticationLoggable;
 
     /**
      * The attributes that are mass assignable.
@@ -37,7 +38,7 @@ class User extends Authenticatable
         'admin',
         'otp',
         'otp_token',
-        'otp_expires_at'
+        'otp_expires_at',
     ];
 
     /**
@@ -106,14 +107,19 @@ class User extends Authenticatable
 
     }
 
+    public function socials()
+    {
+        return $this->hasMany(UserSocial::class);
+    }
+
     public function createAccessToken($name, $abilities = ['*'])
     {
         $token = $this->tokens()->create([
-            "name" => $name,
-            "token" => hash('sha256', $plainTextToken = \Str::random(40)),
-            "abilities" => $abilities,
-            "last_used_at" => now(),
-            "expires_at" => now()->addHour()
+            'name' => $name,
+            'token' => hash('sha256', $plainTextToken = \Str::random(40)),
+            'abilities' => $abilities,
+            'last_used_at' => now(),
+            'expires_at' => now()->addHour(),
         ]);
 
         return new NewAccessToken($token, $token->id.'|'.$plainTextToken);
