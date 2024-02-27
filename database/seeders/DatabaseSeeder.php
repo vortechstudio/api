@@ -42,6 +42,8 @@ class DatabaseSeeder extends Seeder
             "name" => "Railway Manager"
         ]);
 
+        $this->call(MenuSeeder::class);
+
         if(config('app.env') == 'local' || config('app.env') == 'testing') {
             $this->call(TestSeeder::class);
         }
