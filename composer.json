@@ -9,7 +9,7 @@
         "ext-curl": "*",
         "arcanedev/log-viewer": "^10.0",
         "guzzlehttp/guzzle": "^7.2",
-        "ivanomatteo/laravel-device-tracking": "^0.2.1",
+        "ivanomatteo/laravel-device-tracking": "^1.0.0",
         "jantinnerezo/livewire-alert": "^3.0",
         "knplabs/github-api": "^3.13",
         "larabug/larabug": "^3.0",
